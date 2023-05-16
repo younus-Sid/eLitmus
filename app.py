@@ -86,7 +86,6 @@ admin.add_view(ModelView(users, db.session))
 admin.add_view(ModelView(useranalytics, db.session))
 
 
-# PythonAnyWhere MySQL Database password:= mysql123
 mysql = mysql.connector.connect(
     host="localhost",
     user="root",
