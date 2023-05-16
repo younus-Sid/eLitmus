@@ -3,7 +3,7 @@ import json
 
 
 # Third party libraries
-from flask import Flask, redirect, request, url_for, render_template
+from flask import Flask, redirect, request, url_for, render_template, session, abort
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_sqlalchemy import SQLAlchemy
@@ -81,11 +81,19 @@ class SignUpForm(FlaskForm):
 
 
 # Flask admin panel
+class SecureModelView(ModelView):
+    def is_accessible(self):
+        if "logged_in" in session:
+            return True
+        else:
+            abort(403)
+            
 admin = Admin(app)
-admin.add_view(ModelView(users, db.session))
-admin.add_view(ModelView(useranalytics, db.session))
+admin.add_view(SecureModelView(users, db.session))
+admin.add_view(SecureModelView(useranalytics, db.session))
 
 
+# PythonAnyWhere MySQL Database password:= mysql123
 mysql = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -184,6 +192,14 @@ def signuppage():
 def loginpage():
     loginform = LoginForm()
     if loginform.validate_on_submit():
+        # Checking if user is admin
+        if loginform.email.data == "coyousisesi@gmail.com" and loginform.password.data == "abc@123":
+            session['logged_in'] = True
+        else:
+            # Removing admin access
+            if "logged_in" in session:
+                session.pop("logged_in")
+
         user = users.query.filter_by(Email=loginform.email.data).first()
         if user:
             if check_password_hash(user.Password, loginform.password.data):
@@ -258,6 +274,10 @@ def callback():
     else:
         return "User email not available or not verified by Google.", 400
 
+    # Removing admin access
+    if "logged_in" in session:
+        session.pop("logged_in")
+
     user = users.query.filter_by(Email=users_email).first()
     # If user doesn't exist in database
     if not user:
@@ -284,6 +304,9 @@ def callback():
 @app.route("/logout")
 @login_required
 def logout():
+    # Removing admin access
+    if "logged_in" in session:
+        session.pop("logged_in")
     logout_user()
     return redirect(url_for("index"))
 
