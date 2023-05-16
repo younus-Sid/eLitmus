@@ -1,0 +1,188 @@
+{% extends 'treasurehunt.html' %}
+
+{% block content %}
+
+    {% if stageValue == 1: %}
+    <div class="card text-dark bg-warning" style="border-radius: 0;">
+        <div class="card-header"><h2 class="container">Challenge</h2></div>
+        <div class="card-body container">
+            <h5 class="card card-body card-title">In which direction should you go ?</h5>
+            <p class="card card-body card-text">You are standing at a crossroad going north, south, east, west which are named as "EAST", "NORTH", "WEST" and "SOUTH"
+            respectively. One of the road leads you to the treasure land.</p>
+            
+            <p><a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                    aria-controls="collapseExample">
+                    Reveal Clue
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    The road name has an odd length.
+                </div>
+            </div>
+            <form method="POST" action="/treasurehunt">
+                <div class="card card-body mb-3">
+                    <div class="form-outline">
+                        <input type="text" id="stage1" class="form-control form-control-lg" value="" 
+                        name="answer" placeholder="Enter 'NORTH' or 'SOUTH' or 'EAST' or 'WEST'" required/>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Sumbit Answer</button>
+            </form>
+        </div>
+    </div>
+    {% elif stageValue == 2: %}
+    <div class="card text-dark bg-warning" style="border-radius: 0;">
+        <div class="card-header">
+            <h2 class="container">Challenge</h2>
+        </div>
+        <div class="card-body container">
+            <h5 class="card card-body card-title">Which statue will you choose ?</h5>
+            <p class="card card-body card-text">There are 8 statues installed at the entry of treasure land and each one of them wears a hat. One of the statues' hat
+            contains the location of a fort where the treasure is hidden.</p>
+    
+            <p><a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Reveal Clue
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    The answer resides in the question.
+                </div>
+            </div>
+            <form method="POST" action="/treasurehunt">
+                <div class="card card-body mb-3">
+                    <div class="form-outline">
+                        <input type="text" id="stage2" class="form-control form-control-lg" value="" name="answer"
+                            placeholder="Enter the statue number" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Sumbit Answer</button>
+            </form>
+        </div>
+    </div>
+    {% elif stageValue == 3: %}
+    <div class="card text-dark bg-warning" style="border-radius: 0;">
+        <div class="card-header">
+            <h2 class="container">Challenge</h2>
+        </div>
+        <div class="card-body container">
+            <h5 class="card card-body card-title">What is the secret word ?</h5>
+            <p class="card card-body card-text">Woohoo! you have reached at the treasure location. But wait, the door is 
+                locked and requires a secret word to unlock it. You
+                need to speak the secret word to unlock the fort entry door.</p>
+    
+            <p><a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Reveal Clue
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    Look in the image.<br>I would choose the longest one.
+                </div>
+                <img class="img-fluid mb-3" src="static/HiddenWordImage.jpg" alt="Image Not Avialable Currently!">
+            </div>
+            <form method="POST" action="/treasurehunt">
+                <div class="card card-body mb-3">
+                    <div class="form-outline">
+                        <input type="text" id="stage3" class="form-control form-control-lg" value="" name="answer"
+                            placeholder="Enter the word" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Sumbit Answer</button>
+            </form>
+        </div>
+    </div>
+    {% elif stageValue == 4: %}
+    <div class="card text-dark bg-warning" style="border-radius: 0;">
+        <div class="card-header">
+            <h2 class="container">Challenge</h2>
+        </div>
+        <div class="card-body container">
+            <h5 class="card card-body card-title">On what numbers should you step ?</h5>
+            <p class="card card-body card-text">Having unlocked the door, you now have entered the fort. The floor of the fort is enscribed with distinct numbers.
+            Stepping on a wrong number will make you lose the treasure. So choose wisely on which numbers you should step. One wrong move and game over.</p>
+    
+            <p><a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Reveal Clue
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    .96 dna 69 neewteb numbers emirp era that srebmun IV dniF<br>
+                    .322 ot equal eb should srebmun those fo sum ehT
+                </div>
+            </div>
+            <form method="POST" action="/treasurehunt">
+                <div class="card card-body mb-3">
+                    <div class="form-outline">
+                        <input type="text" id="stage4" class="form-control form-control-lg" value="" name="answer"
+                            placeholder="Enter in decreasing order separated by single space." required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Sumbit Answer</button>
+            </form>
+        </div>
+    </div>
+    {% elif stageValue == 5: %}
+    <div class="card text-dark bg-warning" style="border-radius: 0;">
+        <div class="card-header">
+            <h2 class="container">Challenge</h2>
+        </div>
+        <div class="card-body container">
+            <h5 class="card card-body card-title">How many guavas. ?</h5>
+            <p class="card card-body card-text">The treasure owner loved Guavas. 
+                Find the number of guavas he would have eaten in his entire year.
+                When you guess the correct number of guavas you will be able to enter a secret passage to the treasure.</p>
+    
+            <p><a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+                    Reveal Clue
+                </a>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body mb-3">
+                    The answer is already written on this page.
+                </div>
+            </div>
+            <form method="POST" action="/treasurehunt">
+                <div class="card card-body mb-3">
+                    <div class="form-outline">
+                        <input type="text" id="stage5" class="form-control form-control-lg" value="" name="answer"
+                            placeholder="Enter the crossword" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Sumbit Answer</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="card text-dark bg-warning" style="border-radius: 0;">
+        <div class="card-header">
+            <h2 class="container">Challenge</h2>
+        </div>
+        <div class="card-body container">
+            <h5 class="card card-body card-title">Lets make it a little challenging.</h5>
+            <p class="card card-body card-text">You have arrived in the room that has the treasure but this treasure is protected by a shield.
+                So to get the treasure you need to tell all the previous answers from previous stages in the same order as they were asked and write the 
+                answer you wrote earlier each answer separated by a single space.
+                You will get only one chance. Failing to give the correct answer you will lose your treasure. 
+            </p>
+            <form method="POST" action="/treasurehunt">
+                <div class="card card-body mb-3">
+                    <div class="form-outline">
+                        <input type="text" id="stage6" class="form-control form-control-lg" value="" name="answer"
+                            placeholder="Your answer" required />
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Sumbit Answer</button>
+            </form>
+        </div>
+        
+    </div>
+    {% endif %}
+
+{% endblock %}

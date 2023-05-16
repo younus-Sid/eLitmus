@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coyousi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" databs-offset="100">
+
+    {% if not isCorrect %}
+        {% if stageValue == 4 or stageValue == 6: %}
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">YOU LOST THE TREASURE</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Oh no you have lost!<br>
+                        You need to restart your journey, Good Luck!
+                        {% set stageValue = 1 %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok Fine</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">WRONG ANSWER</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Your answer is incorrect!<br>
+                        Try using the clue to get the correct answer.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% elif isCorrect %}
+        {% if stageValue >= 7: %}
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">CONGRATULATIONS! WOOHOO!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        YOU HAVE WON!<br>
+                        THAT IS REALLY UNBELIEVABLE FOR ME.<br>
+                        YOU ARE JUST GREAT.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    {% endif %}
+    
+
+<!-- HOME BACKGROUND CONTENT PART -->
+    <div class="bg-img jumbotron" style="background-image: url(static/Img_TreasureHunt.png);">
+        <div class="container text-center">
+            <br><br><br><br><br><br>
+            {% if stageValue == 1: %}
+            <h2 class="card-title"><b>Stage 1 : Choose Direction</b></h2><br>
+            <h5 class="card-text">
+                Test Your Critical Thinking, Analysis<br>And Problem Solving Skills.
+            </h5><br><br><br><br>
+            {% elif stageValue == 2: %}
+            <h2 class="card-title"><b>Stage 2 : Get The Statue</b></h2><br>
+            <h5 class="card-text">
+                Test Your Focus, Analysis<br>And Problem Solving Skills.
+            </h5><br><br><br><br>
+            {% elif stageValue == 3: %}
+            <h2 class="card-title"><b>Stage 3 : Secret Word</b></h2><br>
+            <h5 class="card-text">
+                Test Your Critical Thinking, Analysis<br>And Eye For Details Skills.
+            </h5><br><br><br><br>
+            {% elif stageValue == 4: %}
+            <h2 class="card-title"><b>Stage 4 : Deadly Numbers</b></h2><br>
+            <h5 class="card-text">
+                Test Your Problem Solving, Analysis<br>And Motivated Skills.
+            </h5><br><br><br><br>
+            {% elif stageValue == 5: %}
+            <h2 class="card-title"><b>Stage 5 : Find Guavas</b></h2><br>
+            <h5 class="card-text">
+                Test Your Eye For Detail, Focus<br>And Critical Thinking Ability.
+            </h5><br><br><br><br>
+            {% else %}
+            <h2 class="card-title"><b>Stage 6 : Finale</b></h2><br>
+            <h5 class="card-text">
+                Test Your Stress Management, Perseverance<br>And Focus Capacity.
+            </h5><br><br><br><br>
+            {% endif %}
+        </div>
+    </div>
+
+
+<!-- NAVBAR PART -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <button class="btn btn-danger ms-3">EXIT GAME</button>
+            </a>
+        </div>
+    </nav>
+
+
+
+
+<!-- ALL RESPECTIVE STAGES PART -->
+    {% block content %}
+    {% endblock %}
+
+
+<!-- FOOTER PART -->
+    <footer class="foot bg-dark text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-facebook-f"></i></a>
+
+                <!-- Twitter -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-twitter"></i></a>
+
+                <!-- Google -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-google"></i></a>
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-instagram"></i></a>
+
+                <!-- Linkedin -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-linkedin-in"></i></a>
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button">
+                    <i class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2023 Copyright: Coyousi
+        </div>
+        <!-- Copyright -->
+    </footer>
+
+
+<!-- JAVASCRIPT PART -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous">
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#staticBackdrop').modal('show');
+        })     
+    </script>
+
+    
+</body>
+</html>
